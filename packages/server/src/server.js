@@ -9,8 +9,6 @@ const app = express()
 
 app.use(express.static(root))
 
-console.log({ root })
-
 const handleListening = () => {
   console.log(`[server] listening on http://localhost:3000`)
 }
