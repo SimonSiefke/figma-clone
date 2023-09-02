@@ -22,7 +22,7 @@ export const build = async () => {
   await Replace.replace({
     path: 'dist/packages/renderer-process/src/parts/AssetDir/AssetDir.js',
     occurrence: '../../../../..',
-    replacement: '../../../..',
+    replacement: '../..',
   })
   await Replace.replace({
     path: 'dist/packages/renderer-process/src/parts/RendererWorkerUrl/RendererWorkerUrl.js',
