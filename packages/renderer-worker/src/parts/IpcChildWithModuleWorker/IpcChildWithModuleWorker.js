@@ -2,6 +2,10 @@ export const create = () => {
   return globalThis
 }
 
+export const signal = (global) => {
+  global.postMessage('ready')
+}
+
 export const wrap = (global) => {
   return {
     global,
