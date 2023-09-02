@@ -23,10 +23,20 @@ export const wrap = (worker) => {
     addEventListener(type, listener) {
       switch (type) {
         case 'message':
-          this.worker.addEventListener('message', listener)
+          const wrappedListener = (event) => {
+            listener(event.data)
+          }
+          this.worker.addEventListener('message', wrappedListener)
           break
         default:
           break
+      }
+    },
+    send(message) {
+      if (message && message.result && message.result instanceof OffscreenCanvas) {
+        this.worker.postMessage(message, [message.result])
+      } else {
+        this.worker.postMessage(message)
       }
     },
   }
