@@ -1,8 +1,10 @@
 import fs from 'node:fs'
 import path, { join } from 'node:path'
 import * as Root from '../Root/Root.js'
+import * as Replace from '../Replace/Replace.js'
+import * as BundleJs from '../BundleJs/BundleJs.js'
 
-export const build = () => {
+export const build = async () => {
   const dist = path.join(Root.root, 'dist')
   fs.rmSync(dist, { recursive: true, force: true })
   fs.mkdirSync(dist, { recursive: true })
@@ -11,5 +13,25 @@ export const build = () => {
   fs.cpSync(join(Root.root, 'packages', 'renderer-process', 'src'), join(dist, 'packages', 'renderer-process', 'src'), {
     recursive: true,
     force: true,
+  })
+  await Replace.replace({
+    path: 'dist/packages/renderer-process/src/parts/Ajax/Ajax.js',
+    occurrence: '../../../../../static/js/ky.js',
+    replacement: '../../../../../js/ky.js',
+  })
+  await Replace.replace({
+    path: 'dist/packages/renderer-worker/src/parts/Ajax/Ajax.js',
+    occurrence: '../../../../../static/js/ky.js',
+    replacement: '../../../../../js/ky.js',
+  })
+  await BundleJs.bundleJs({
+    cwd: join(Root.root, 'dist', 'packages', 'renderer-process'),
+    from: 'src/rendererProcessMain.js',
+    platform: 'web',
+  })
+  await BundleJs.bundleJs({
+    cwd: join(Root.root, 'dist', 'packages', 'renderer-worker'),
+    from: 'src/rendererWorkerMain.js',
+    platform: 'webworker',
   })
 }
