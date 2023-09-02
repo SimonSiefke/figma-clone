@@ -43,7 +43,7 @@ jobs:
         if: matrix.os == 'ubuntu-22.04'
         run: node scripts/build.js
         env:
-          PATH_PREFIX: /lvce-editor
+          PATH_PREFIX: /figma-clone
       - name: Upload artifact
         if: matrix.os == 'ubuntu-22.04'
         uses: actions/upload-pages-artifact@v1
