@@ -12,7 +12,10 @@ export const wrap = (global) => {
     addEventListener(type, listener) {
       switch (type) {
         case 'message':
-          this.global.addEventListener('message', listener)
+          const wrappedListener = (event) => {
+            listener(event.data)
+          }
+          this.global.addEventListener('message', wrappedListener)
           break
         default:
           break

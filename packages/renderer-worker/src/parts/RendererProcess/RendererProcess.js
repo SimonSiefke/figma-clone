@@ -17,6 +17,12 @@ export const listen = async () => {
   state.rpc = rpc
 }
 
+/**
+ *
+ * @param {string} method
+ * @param  {...any} params
+ * @returns {Promise<any>}
+ */
 export const invoke = (method, ...params) => {
-  state.rpc.invoke(method, ...params)
+  return state.rpc.invoke(method, ...params)
 }
