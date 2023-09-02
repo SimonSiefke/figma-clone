@@ -1,12 +1,13 @@
 {
   "name": "renderer-worker",
-  "version": "1.0.0",
+  "version": "0.0.0-dev",
   "description": "",
-  "main": "index.js",
+  "main": "src/rendererWorkerMain.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
