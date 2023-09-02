@@ -5,6 +5,7 @@ import * as Replace from '../Replace/Replace.js'
 import * as BundleJs from '../BundleJs/BundleJs.js'
 
 export const build = async () => {
+  const pathPrefix = process.env.PATH_PREFIX || ''
   const dist = path.join(Root.root, 'dist')
   fs.rmSync(dist, { recursive: true, force: true })
   fs.mkdirSync(dist, { recursive: true })
@@ -22,7 +23,7 @@ export const build = async () => {
   await Replace.replace({
     path: 'dist/packages/renderer-process/src/parts/AssetDir/AssetDir.js',
     occurrence: '../../../../..',
-    replacement: '../../..',
+    replacement: `${pathPrefix}`,
   })
   await Replace.replace({
     path: 'dist/packages/renderer-process/src/parts/RendererWorkerUrl/RendererWorkerUrl.js',
