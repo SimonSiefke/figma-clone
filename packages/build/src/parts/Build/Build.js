@@ -15,6 +15,16 @@ export const build = async () => {
     force: true,
   })
   await Replace.replace({
+    path: 'dist/index.html',
+    occurrence: 'packages/renderer-process/src/rendererProcessMain.js',
+    replacement: 'packages/renderer-process/dist/rendererProcessMain.js',
+  })
+  await Replace.replace({
+    path: 'dist/packages/renderer-process/src/parts/RendererWorkerUrl/RendererWorkerUrl.js',
+    occurrence: 'packages/renderer-worker/src/rendererWorkerMain.js',
+    replacement: 'packages/renderer-worker/dist/rendererWorkerMain.js',
+  })
+  await Replace.replace({
     path: 'dist/packages/renderer-process/src/parts/Ajax/Ajax.js',
     occurrence: '../../../../../static/js/ky.js',
     replacement: '../../../../../js/ky.js',
