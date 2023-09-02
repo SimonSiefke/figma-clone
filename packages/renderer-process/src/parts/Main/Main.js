@@ -1,9 +1,6 @@
-import * as RendererWorkerUrl from '../RendererWorkerUrl/RendererWorkerUrl.js'
+import * as RendererWorker from '../RendererWorker/RendererWorker.js'
 
-export const main = () => {
-  const worker = new Worker(RendererWorkerUrl.rendererWorkerUrl, {
-    type: 'module',
-    name: 'Renderer Worker',
-  })
+export const main = async () => {
+  await RendererWorker.listen()
   console.log('created renderer worker')
 }
