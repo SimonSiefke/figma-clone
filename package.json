@@ -3,6 +3,7 @@
   "version": "0.0.0-dev",
   "description": "Just a demo to try out some things with offscreen canvas, webworkers and design perhaps similar to figma.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "postinstall": "lerna bootstrap --ci",
     "test": "",
