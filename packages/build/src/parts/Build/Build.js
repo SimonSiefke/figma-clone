@@ -20,7 +20,7 @@ export const build = async () => {
     replacement: 'packages/renderer-process/dist/rendererProcessMain.js',
   })
   await Replace.replace({
-    path: 'dist/packages/renderer-process/src/RendererWorkerUrl/RendererWorkerUrl.js',
+    path: 'dist/packages/renderer-process/src/parts/RendererWorkerUrl/RendererWorkerUrl.js',
     occurrence: 'packages/renderer-worker/src/rendererWorkerMain.js',
     replacement: 'packages/renderer-worker/dist/rendererWorkerMain.js',
   })
