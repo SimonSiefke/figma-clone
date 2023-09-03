@@ -26,6 +26,11 @@ export const build = async () => {
     replacement: `${pathPrefix}`,
   })
   await Replace.replace({
+    path: 'dist/packages/renderer-worker/src/parts/AssetDir/AssetDir.js',
+    occurrence: '../../../../..',
+    replacement: `${pathPrefix}`,
+  })
+  await Replace.replace({
     path: 'dist/packages/renderer-process/src/parts/RendererWorkerUrl/RendererWorkerUrl.js',
     occurrence: 'packages/renderer-worker/src/rendererWorkerMain.js',
     replacement: 'packages/renderer-worker/dist/rendererWorkerMain.js',
