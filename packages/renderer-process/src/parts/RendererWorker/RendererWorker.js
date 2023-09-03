@@ -19,3 +19,7 @@ export const listen = async () => {
   const rpc = JsonRpc.create(ipc)
   state.rpc = rpc
 }
+
+export const send = (method, ...params) => {
+  state.rpc.send(method, ...params)
+}

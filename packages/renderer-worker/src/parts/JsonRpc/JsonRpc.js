@@ -1,6 +1,7 @@
 import * as Command from '../Command/Command.js'
 import * as HandleJsonRpcMessage from '../HandleJsonRpcMessage/HandleJsonRpcMessage.js'
 import * as JsonRpcInvoke from '../JsonRpcInvoke/JsonRpcInvoke.js'
+import * as JsonRpcSend from '../JsonRpcSend/JsonRpcSend.js'
 
 export const create = (ipc) => {
   const callbacks = Object.create(null)
@@ -13,6 +14,9 @@ export const create = (ipc) => {
     callbacks,
     invoke(method, ...params) {
       return JsonRpcInvoke.invoke(this.ipc, this.callbacks, method, ...params)
+    },
+    send(method, ...params) {
+      return JsonRpcSend.send(this.ipc, method, ...params)
     },
   }
 }
