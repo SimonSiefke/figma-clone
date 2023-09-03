@@ -1,4 +1,7 @@
 export const state = {
+  /**
+   * @type {any[]}
+   */
   objects: [],
 }
 
