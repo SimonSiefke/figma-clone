@@ -15,6 +15,9 @@ export const handlePointerMove = (eventX, eventY) => {
   const relativeX = eventX - 10
   const relativeY = eventY - 80
   const objects = ObjectState.getObjects()
+  if (objects.length === 0) {
+    return
+  }
   objects[0].x = relativeX
   objects[0].y = relativeY
   DrawObjects.drawObjects(CtxState.get(1), objects)
