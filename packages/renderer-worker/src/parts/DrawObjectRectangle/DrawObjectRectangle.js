@@ -1,3 +1,5 @@
+export const id = 'rectangle'
+
 export const drawObject = (ctx, object) => {
   const { background, x, y, width, height } = object
   ctx.fillStyle = background

@@ -1,13 +1,14 @@
-import * as DrawObjectRectangle from '../DrawObjectRectangle/DrawObjectRectangle.js'
-import * as DrawObjectText from '../DrawObjectText/DrawObjectText.js'
+import * as DrawObjectModule from '../DrawObjectModule/DrawObjectModule.js'
+
+const map = Object.create(null)
+
+for (const value of Object.values(DrawObjectModule)) {
+  map[value.id] = value
+}
 
 export const getModule = (type) => {
-  switch (type) {
-    case 'text':
-      return DrawObjectText
-    case 'rectangle':
-      return DrawObjectRectangle
-    default:
-      throw new Error('module not found')
+  if (map[type]) {
+    return map[type]
   }
+  throw new Error('module not found')
 }
