@@ -34,6 +34,15 @@ export const handlePointerDown = (eventX, eventY) => {
   mouseDownState.x = relativeDownX
   mouseDownState.y = relativeDownY
   mouseDownState.object = object
+  console.log('draw selection', object)
+  const selectionObject = {
+    type: 'rectangle-outline',
+    x: object.x,
+    y: object.y,
+    width: object.width,
+    height: object.height,
+  }
+  DrawObjects.drawObjects(CtxState.get(1), [...objects, selectionObject])
 }
 
 export const handlePointerMove = (eventX, eventY) => {
@@ -56,6 +65,8 @@ export const handlePointerUp = (eventX, eventY) => {
   mouseDownState.x = 0
   mouseDownState.y = 0
   mouseDownState.object = undefined
+  // const objects = ObjectState.getObjects()
+  // DrawObjects.drawObjects(CtxState.get(1), objects)
 }
 
 export const handleDoubleClick = (eventX, eventY) => {
@@ -63,8 +74,6 @@ export const handleDoubleClick = (eventX, eventY) => {
 }
 
 export const handleClickRectangle = () => {
-  // TODO create rectangle
-  console.log('create rectangle')
   const objects = ObjectState.getObjects()
   const first = objects[0]
   objects.unshift({
