@@ -29,3 +29,8 @@ export const handleClickText = (event) => {
   const { clientX, clientY } = event
   RendererWorker.send('RemoteCanvas.handleClickText', clientX, clientY)
 }
+
+export const handleKeyDown = (event) => {
+  const { ctrlKey, shiftKey, altKey, key } = event
+  RendererWorker.send('RemoteCanvas.handleKeyDown', ctrlKey, shiftKey, altKey, key)
+}
