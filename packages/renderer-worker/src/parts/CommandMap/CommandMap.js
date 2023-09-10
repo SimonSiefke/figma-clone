@@ -8,4 +8,5 @@ export const commandMap = {
   'RemoteCanvas.handlePointerDown': RemoteCanvas.handlePointerDown,
   'RemoteCanvas.handlePointerMove': RemoteCanvas.handlePointerMove,
   'RemoteCanvas.handlePointerUp': RemoteCanvas.handlePointerUp,
+  'RemoteCanvas.handleKeyDown': RemoteCanvas.handleKeyDown,
 }

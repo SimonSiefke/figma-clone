@@ -11,6 +11,8 @@ export const create = () => {
   buttonRectangle.onclick = RemoteCanvasEvents.handleClickRectangle
   const buttonText = document.getElementById('Text')
   buttonText.onclick = RemoteCanvasEvents.handleClickText
+
+  window.addEventListener('keydown', RemoteCanvasEvents.handleKeyDown)
   document.body.append(canvas)
   const offscreenCanvas = canvas.transferControlToOffscreen()
   return offscreenCanvas

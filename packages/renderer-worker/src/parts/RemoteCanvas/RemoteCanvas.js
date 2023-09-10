@@ -4,6 +4,9 @@ import * as ObjectState from '../ObjectState/ObjectState.js'
 import * as RendererProcess from '../RendererProcess/RendererProcess.js'
 import * as GetObjectAt from '../GetObjectAt/GetObjectAt.js'
 import * as GetRandomColor from '../GetRandomColor/GetRandomColor.js'
+import * as KeyBindings from '../KeyBindings/KeyBindings.js'
+import * as ActiveObjectState from '../ActiveObjectState/ActiveObjectState.js'
+import * as ExecuteActiveObjectCommand from '../ExecuteActiveObjectCommand/ExecuteActiveObjectCommand.js'
 
 export const create = () => {
   return RendererProcess.invoke('RemoteCanvas.create')
@@ -11,15 +14,6 @@ export const create = () => {
 
 const px = 10
 const py = 40
-
-const mouseDownState = {
-  x: 0,
-  y: 0,
-  /**
-   * @type {any}
-   */
-  object: undefined,
-}
 
 export const handlePointerDown = (eventX, eventY) => {
   const relativeX = eventX - px
@@ -31,9 +25,7 @@ export const handlePointerDown = (eventX, eventY) => {
   }
   const relativeDownX = object.x - relativeX
   const relativeDownY = object.y - relativeY
-  mouseDownState.x = relativeDownX
-  mouseDownState.y = relativeDownY
-  mouseDownState.object = object
+  ActiveObjectState.set(relativeDownX, relativeDownY, true, object)
   console.log('draw selection', object)
   const selectionObject = {
     type: 'rectangle-outline',
@@ -52,21 +44,20 @@ export const handlePointerMove = (eventX, eventY) => {
   if (objects.length === 0) {
     return
   }
-  if (!mouseDownState.object) {
+  if (!ActiveObjectState.state.mouseDown) {
     return
   }
-  const object = mouseDownState.object
+  const object = ActiveObjectState.getObject()
+  if (!object) {
+    return
+  }
   object.x = relativeX
   object.y = relativeY
   DrawObjects.drawObjects(CtxState.get(1), objects)
 }
 
 export const handlePointerUp = (eventX, eventY) => {
-  mouseDownState.x = 0
-  mouseDownState.y = 0
-  mouseDownState.object = undefined
-  // const objects = ObjectState.getObjects()
-  // DrawObjects.drawObjects(CtxState.get(1), objects)
+  ActiveObjectState.state.mouseDown = false
 }
 
 export const handleDoubleClick = (eventX, eventY) => {
@@ -87,4 +78,13 @@ export const handleClickRectangle = () => {
 
 export const handleClickText = () => {
   // TODO create text
+}
+
+export const handleKeyDown = (ctrlKey, shiftKey, altKey, key) => {
+  const command = KeyBindings.getCommand(key)
+  if (!command) {
+    return
+  }
+  ExecuteActiveObjectCommand.executeActiveObjectCommand(command)
+  console.log({ command })
 }
