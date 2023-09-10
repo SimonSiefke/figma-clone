@@ -6,6 +6,11 @@ export const create = () => {
   canvas.addEventListener('pointermove', RemoteCanvasEvents.handlePointerMove)
   canvas.addEventListener('pointerup', RemoteCanvasEvents.handlePointerUp)
   canvas.addEventListener('dblclick', RemoteCanvasEvents.handleDoubleClick)
+
+  const buttonRectangle = document.getElementById('Rectangle')
+  buttonRectangle.onclick = RemoteCanvasEvents.handleClickRectangle
+  const buttonText = document.getElementById('Text')
+  buttonText.onclick = RemoteCanvasEvents.handleClickText
   document.body.append(canvas)
   const offscreenCanvas = canvas.transferControlToOffscreen()
   return offscreenCanvas

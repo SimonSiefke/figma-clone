@@ -3,6 +3,7 @@ import * as DrawObjects from '../DrawObjects/DrawObjects.js'
 import * as ObjectState from '../ObjectState/ObjectState.js'
 import * as RendererProcess from '../RendererProcess/RendererProcess.js'
 import * as GetObjectAt from '../GetObjectAt/GetObjectAt.js'
+import * as GetRandomColor from '../GetRandomColor/GetRandomColor.js'
 
 export const create = () => {
   return RendererProcess.invoke('RemoteCanvas.create')
@@ -59,4 +60,22 @@ export const handlePointerUp = (eventX, eventY) => {
 
 export const handleDoubleClick = (eventX, eventY) => {
   console.log({ eventX, eventY })
+}
+
+export const handleClickRectangle = () => {
+  // TODO create rectangle
+  console.log('create rectangle')
+  const objects = ObjectState.getObjects()
+  const first = objects[0]
+  objects.unshift({
+    ...first,
+    x: first.x + 10,
+    y: first.y + 20,
+    background: GetRandomColor.getRandomColor(),
+  })
+  DrawObjects.drawObjects(CtxState.get(1), objects)
+}
+
+export const handleClickText = () => {
+  // TODO create text
 }
