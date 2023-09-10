@@ -24,3 +24,7 @@ export const handlePointerMove = (eventX, eventY) => {
 }
 
 export const handlePointerUp = (eventX, eventY) => {}
+
+export const handleDoubleClick = (eventX, eventY) => {
+  console.log({ eventX, eventY })
+}
