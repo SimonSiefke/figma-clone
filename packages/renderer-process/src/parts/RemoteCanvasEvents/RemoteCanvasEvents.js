@@ -19,3 +19,13 @@ export const handleDoubleClick = (event) => {
   const { clientX, clientY } = event
   RendererWorker.send('RemoteCanvas.handleDoubleClick', clientX, clientY)
 }
+
+export const handleClickRectangle = (event) => {
+  const { clientX, clientY } = event
+  RendererWorker.send('RemoteCanvas.handleClickRectangle', clientX, clientY)
+}
+
+export const handleClickText = (event) => {
+  const { clientX, clientY } = event
+  RendererWorker.send('RemoteCanvas.handleClickText', clientX, clientY)
+}
