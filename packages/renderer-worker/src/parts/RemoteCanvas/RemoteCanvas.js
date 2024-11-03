@@ -6,6 +6,7 @@ import * as GetObjectAt from '../GetObjectAt/GetObjectAt.js'
 import * as GetRandomColor from '../GetRandomColor/GetRandomColor.js'
 import * as KeyBindings from '../KeyBindings/KeyBindings.js'
 import * as ActiveObjectState from '../ActiveObjectState/ActiveObjectState.js'
+import * as ObjectId from '../ObjectId/ObjectId.js'
 import * as ExecuteActiveObjectCommand from '../ExecuteActiveObjectCommand/ExecuteActiveObjectCommand.js'
 
 export const create = () => {
@@ -71,7 +72,10 @@ export const handleClickRectangle = () => {
     ...last,
     x: last.x + 10,
     y: last.y + 20,
+    type: ObjectId.Rectangle,
     background: GetRandomColor.getRandomColor(),
+    width: 100,
+    height: 100,
   }
   const newObjects = [...objects, newObject]
   ObjectState.setObjects(newObjects)
@@ -83,6 +87,7 @@ export const handleClickCircle = () => {
   const last = objects.at(-1)
   const newObject = {
     ...last,
+    type: ObjectId.Circle,
     x: last.x + 10,
     y: last.y + 20,
     background: GetRandomColor.getRandomColor(),

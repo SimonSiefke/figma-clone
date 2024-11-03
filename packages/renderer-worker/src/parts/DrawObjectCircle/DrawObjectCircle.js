@@ -1,4 +1,6 @@
-export const id = 'circle'
+import * as ObjectId from '../ObjectId/ObjectId.js'
+
+export const id = ObjectId.Circle
 
 export const drawObject = (ctx, object) => {
   const { background, x, y, size } = object
