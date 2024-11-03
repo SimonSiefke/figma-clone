@@ -1,3 +1,4 @@
+// @ts-ignore
 import ky, { HTTPError } from '../../../../../static/js/ky.js'
 import { VError } from '../VError/VError.js'
 import * as Assert from '../Assert/Assert.js'
@@ -11,14 +12,8 @@ export const getJson = async (url, options = {}) => {
     const response = await ky(url, options)
     return response.json()
   } catch (error) {
-    if (
-      error &&
-      error instanceof TypeError &&
-      error.message === 'Failed to fetch'
-    ) {
-      throw new VError(
-        `Failed to request json from "${url}". Make sure that the server is running and has CORS enabled`
-      )
+    if (error && error instanceof TypeError && error.message === 'Failed to fetch') {
+      throw new VError(`Failed to request json from "${url}". Make sure that the server is running and has CORS enabled`)
     }
     if (error && error instanceof HTTPError) {
       let json
@@ -28,9 +23,7 @@ export const getJson = async (url, options = {}) => {
         throw error
       }
       if (json && json.message) {
-        throw new VError(
-          `Failed to request json from "${url}": ${json.message}`
-        )
+        throw new VError(`Failed to request json from "${url}": ${json.message}`)
       }
     }
     // @ts-ignore
@@ -49,15 +42,8 @@ export const getText = async (url, options = {}) => {
   try {
     return await ky(url, options).text()
   } catch (error) {
-    if (
-      error &&
-      error instanceof TypeError &&
-      error.message === 'Failed to fetch'
-    ) {
-      throw new VError(
-        error,
-        `Failed to request text from "${url}". Make sure that the server is running and has CORS enabled`
-      )
+    if (error && error instanceof TypeError && error.message === 'Failed to fetch') {
+      throw new VError(error, `Failed to request text from "${url}". Make sure that the server is running and has CORS enabled`)
     }
     throw new VError(error, `Failed to request text from "${url}"`)
   }
