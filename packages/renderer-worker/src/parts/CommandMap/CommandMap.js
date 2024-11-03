@@ -4,6 +4,7 @@ export const commandMap = {
   'RemoteCanvas.create': RemoteCanvas.create,
   'RemoteCanvas.handleClickRectangle': RemoteCanvas.handleClickRectangle,
   'RemoteCanvas.handleClickText': RemoteCanvas.handleClickText,
+  'RemoteCanvas.handleClickCircle': RemoteCanvas.handleClickCircle,
   'RemoteCanvas.handleDoubleClick': RemoteCanvas.handleDoubleClick,
   'RemoteCanvas.handlePointerDown': RemoteCanvas.handlePointerDown,
   'RemoteCanvas.handlePointerMove': RemoteCanvas.handlePointerMove,

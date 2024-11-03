@@ -66,14 +66,30 @@ export const handleDoubleClick = (eventX, eventY) => {
 
 export const handleClickRectangle = () => {
   const objects = ObjectState.getObjects()
-  const first = objects[0]
-  objects.unshift({
-    ...first,
-    x: first.x + 10,
-    y: first.y + 20,
+  const last = objects.at(-1)
+  const newObject = {
+    ...last,
+    x: last.x + 10,
+    y: last.y + 20,
     background: GetRandomColor.getRandomColor(),
-  })
-  DrawObjects.drawObjects(CtxState.get(1), objects)
+  }
+  const newObjects = [...objects, newObject]
+  ObjectState.setObjects(newObjects)
+  DrawObjects.drawObjects(CtxState.get(1), newObjects)
+}
+
+export const handleClickCircle = () => {
+  const objects = ObjectState.getObjects()
+  const last = objects.at(-1)
+  const newObject = {
+    ...last,
+    x: last.x + 10,
+    y: last.y + 20,
+    background: GetRandomColor.getRandomColor(),
+  }
+  const newObjects = [...objects, newObject]
+  ObjectState.setObjects(newObjects)
+  DrawObjects.drawObjects(CtxState.get(1), newObjects)
 }
 
 export const handleClickText = () => {
