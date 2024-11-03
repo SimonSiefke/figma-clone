@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./packages/renderer-process"
+    },
+    {
+      "path": "./packages/build"
+    },
+    {
+      "path": "./packages/renderer-worker"
+    },
+    {
+      "path": "./packages/server"
+    }
+  ]
+}
